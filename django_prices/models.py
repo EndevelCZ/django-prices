@@ -8,8 +8,9 @@ from prices import Money, TaxedMoney
 
 from . import forms
 from .validators import MoneyPrecisionValidator
+from functools import total_ordering
 
-
+@total_ordering
 class MoneyField(models.DecimalField):
 
     description = 'A field that stores an amount of money'
@@ -70,7 +71,7 @@ class MoneyField(models.DecimalField):
         kwargs['currency'] = self.currency
         return name, path, args, kwargs
 
-
+@total_ordering
 class TaxedMoneyField(object):
 
     description = (
